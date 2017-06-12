@@ -3,14 +3,9 @@
 [[() {
   local ret
   local j
+  case "$1" in -*) [ ! "$3" = "]]" ] && return 1 ;; esac
+  case "$2" in -*) [ ! "$4" = "]]" ] && return 1 ;; esac
   case "$1" in
-    -*) [ ! "$3" = "]]" ] && return 1 ;;
-  esac
-  case "$2" in
-    -*) [ ! "$4" = "]]" ] && return 1 ;;
-  esac
-  case "$1" in
-    Z) printf 'Usage error\n' >&2 ;;
     -a|-e)	[ -e "$2" ] || ret=1 ;;
     -b|-c|-d|-f|-g|-h|-k|-n|-p|r|-s|-t|-u|-w|-x|-z|-L|-G|-S|-O)
     		[ "$1" "$2" ] || ret=1 ;;
@@ -44,7 +39,7 @@
        fi
        expr "$1" : "$re" >/dev/null || ret=1
        ;;
-    *) ret=70 ;;
+    *) printf 'Usage error\n' >&2; ret=70 ;;
   esac
   return ${ret:-0}
 }
