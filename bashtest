@@ -39,7 +39,7 @@
        fi
        expr "$1" : "$re" >/dev/null || ret=1
        ;;
-    *) printf 'Usage error\n' >&2; ret=70 ;;
+    #*) printf 'Usage error\n' >&2; ret=70 ;;
   esac
   return ${ret:-0}
 }
